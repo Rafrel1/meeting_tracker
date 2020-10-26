@@ -2,14 +2,14 @@ var express = require('express');
 var app = express();
 var fs = require('fs');
 
-app.get('/contacts', function (req, res) {
-  fs.readFile(__dirname + '/data/contacts.json', 'utf8', (err, data) => {
+app.get('/contact', function (req, res) {
+  fs.readFile(__dirname + '/data/contact_list.json', 'utf8', (err, data) => {
     console.log(data);
     res.end(data);
   });
 });
 
-app.put('/contacts', (req, res) => {
+app.put('/contact', (req, res) => {
   /**
    * Read the contact scheme and check if the passed data match the scheme.
    * Unexpected fields will be cut.

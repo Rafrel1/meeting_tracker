@@ -1,0 +1,25 @@
+{
+  "name": "corona_tracker",
+  "version": "1.0.0",
+  "description": "corona_tracker",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rafrel1/corona_tracker.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Rafrel1/corona_tracker/issues"
+  },
+  "homepage": "https://github.com/Rafrel1/corona_tracker#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "eslint": "^7.12.0"
+  }
+}

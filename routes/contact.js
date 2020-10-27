@@ -26,12 +26,10 @@ router.get('/', (req, res) => {
       for (let key in where) {
         for (let i = 0; i < data.length; i++) {
           if (where[key] == data[i][key]){
-            console.log(true);
             answer = data[i];
           }
         }
       }
-      console.log(answer);
     }
     res.status(200).end(JSON.stringify(answer));
   });

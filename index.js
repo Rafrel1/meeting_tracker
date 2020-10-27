@@ -9,5 +9,5 @@ app.use('/meeting', meeting);
 const server = app.listen(8081, () => {
   let host = server.address().address;
   let port = server.address().port;
-  console.log('Corona tracker is listening to at http://%s:%s', host, port);
+  console.log('Meeting tracker is listening to at http://%s:%s', host, port);
 });

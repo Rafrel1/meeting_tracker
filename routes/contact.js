@@ -3,9 +3,37 @@ const router = express.Router();
 const fs = require('fs');
 
 router.get('/', (req, res) => {
+  let where;
+  let answer;
+  if (req.query) {
+    fs.readFile(__dirname + '/../data/contact_scheme.json', 'utf8', (err, data) => {
+      if (err) throw err;
+      data = JSON.parse(data);
+      where = {};
+      for (let key in data) {
+        if (req.query[key]) {
+          where[key] = req.query[key];
+        }
+      }
+    });
+  }
+
   fs.readFile(__dirname + '/../data/contact_list.json', 'utf8', (err, data) => {
-    console.log(data);
-    res.status(200).end(data);
+    if (err) throw err;
+    data = JSON.parse(data);
+    answer = data;
+    if (where) {
+      for (let key in where) {
+        for (let i = 0; i < data.length; i++) {
+          if (where[key] == data[i][key]){
+            console.log(true);
+            answer = data[i];
+          }
+        }
+      }
+      console.log(answer);
+    }
+    res.status(200).end(JSON.stringify(answer));
   });
 });
 
@@ -14,7 +42,7 @@ router.put('/', (req, res) => {
    * Read the contact scheme and check if the passed data match the scheme.
    * Unexpected fields will be cut.
    */
-  let newContact = {'id': 0};
+  let newContact = { 'id': 0 };
   fs.readFile(__dirname + '/../data/contact_scheme.json', 'utf8', (err, data) => {
     if (err) throw err;
     data = JSON.parse(data);
@@ -33,9 +61,9 @@ router.put('/', (req, res) => {
     data = JSON.parse(data);
 
     // Increment mechanism for dataset ID. 
-    for (let i = 0; data.length > i; i++) {
+    for (let i = 0; i < data.length; i++) {
       if (newContact.id <= data[i].id) {
-        newContact.id = data[i].id +1;
+        newContact.id = data[i].id + 1;
       }
     }
 
